@@ -2,6 +2,7 @@ const { body } = require("express-validator");
 
 const registerValidator = [
   body("name")
+    .isString()
     .trim()
     .notEmpty()
     .withMessage("Имя обязательно")

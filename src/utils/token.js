@@ -6,6 +6,7 @@ function generateAccessToken(userId) {
     {
       sub: String(userId),
       type: "access",
+      jti: crypto.randomUUID(),
     },
     process.env.JWT_ACCESS_SECRET,
     {
@@ -19,6 +20,7 @@ function generateRefreshToken(userId) {
     {
       sub: String(userId),
       type: "refresh",
+      jti: crypto.randomUUID(),
     },
     process.env.JWT_REFRESH_SECRET,
     {
