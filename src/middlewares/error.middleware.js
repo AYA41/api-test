@@ -1,10 +1,13 @@
 function errorHandler(error, req, res, next) {
-  console.error(error);
-
   const status = error.status || 500;
 
+  // Ошибки клиента не обязательно записывать как ошибки сервера
+  if (status >= 500) {
+    console.error(error);
+  }
+
   res.status(status).json({
-    message: status === 500 ? "Внутренняя ошибка сервера" : error.message,
+    message: error.message || "Внутренняя ошибка сервера",
   });
 }
 
